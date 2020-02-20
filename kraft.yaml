@@ -1,0 +1,34 @@
+specification: '0.4'
+
+unikraft:
+  version: '0.4'
+  kconfig:
+    - CONFIG_LIBPOSIX_USER=y
+
+architectures:
+  x86_64: true
+
+platforms:  
+  kvm: true
+    
+libraries:
+  lwip:
+    version: '0.4'
+    kconfig:
+      - CONFIG_LWIP=y
+      - CONFIG_LWIP_AUTOIFACE=n
+  newlib: '0.4'
+  click:
+    version: '0.4'
+    kconfig:
+      - LIBCLICK_MAIN=y
+
+run:
+  networks:
+    net0:
+      pre_up: kraft-net --with-dnsmasq up
+      post_down: kraft-net --with-dnsmasq down
+  volumes:
+    vol0:
+      driver: initrd
+      source: ./helloworld.click
