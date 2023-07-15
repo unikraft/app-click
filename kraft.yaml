@@ -13,7 +13,7 @@ libraries:
     kconfig:
       - CONFIG_LWIP=y
       - CONFIG_LWIP_AUTOIFACE=n
-  newlib:
+  musl:
     version: '0.5'
   click:
     version: '0.5'
